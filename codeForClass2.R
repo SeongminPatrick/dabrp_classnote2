@@ -13,7 +13,7 @@ if (!require(readr)) install.packages("readr")
 
 library(DBI)
 library(RSQLite)
-con <- dbConnect(RSQLite::SQLite(), dbname="class2.sqlite")
+con <- dbConnect(RSQLite::SQLite(), dbname="class3.sqlite")
 
 
 # check db tables
@@ -30,7 +30,8 @@ dbReadTable(con, "mtcars")
 
 
 # remove
-dbRemoveTable(con,"tran")
+dbRemoveTable(con,"chennel")
+dbRemoveTable(con,"mtcars")
 dbListTables(con)
 
 
@@ -110,23 +111,25 @@ str(tran)
 
 ## set Mysql with google cloud
 
-# user<-"root"
-# pw<-"XXXXXXXXXXXXXXXX"
-# host<-'XXX.XXX.XXX.XXX'
+user<-"root"
+pw<-"Lyzr0DFOBf3jJqzd"
+host<-'35.184.130.54'
 
-# save(user,pw,host,file ="./gsql.RData")
+save(user,pw,host,file ="./gsql.RData")
 
 load("./gsql.RData")
 
 library(RMySQL)
+#RQLite con <- dbConnect(RSQLite::SQLite(), dbname="class3.sqlite")
+
 con <- dbConnect(MySQL(),
                  user = user,
                  password = pw,
                  host = host,
-                 dbname = "recom")
+                 dbname = "test")
 dbListTables(conn = con)
-dbWriteTable(conn = con, name = 'tran', value = "./recomen/tran.csv")
-dbReadTable(conn = con, name = "Test")
+dbWriteTable(conn = con, name = 'chennel', value = "./recomen/chennel.csv")
+dbReadTable(conn = con, name = "chennel")
 
 ## for bigquery query
 
@@ -137,6 +140,6 @@ dbReadTable(conn = con, name = "Test")
 # order by num_characters desc;
 
 library(bigrquery)
-project <- "konlper-168808" 
-sql <- "SELECT * FROM [konlper-168808:recom.chennel] LIMIT 5"
+project <- "my-project0628" 
+sql <- "SELECT * FROM [my-project0628:recom.competitor] LIMIT 5"
 query_exec(sql, project = project)
