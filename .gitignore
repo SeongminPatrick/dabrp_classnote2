@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .Rproj.user
 .Rhistory
 .RData
@@ -6,3 +7,15 @@ recomen/tran.csv
 gsql.RData
 *cache*
 .httr-oauth
+=======
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+recomen/tran.csv
+gsql.RData
+recomen/chennel.csv
+run_sam.R
+
+*cache*
+>>>>>>> df2f776da2a74c3fc3941d44ef1aeb52103fabec
